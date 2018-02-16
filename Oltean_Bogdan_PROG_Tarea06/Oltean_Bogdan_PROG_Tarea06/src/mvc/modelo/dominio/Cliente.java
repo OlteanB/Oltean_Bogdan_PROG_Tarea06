@@ -14,10 +14,11 @@ import java.util.regex.Pattern;
  */
 public class Cliente {
 
-    private String nombre, dni, direccion, localidad, codigoPostal;
+    private String nombre, dni;
     private int identificador, numClientes;
+    private DireccionPostal direccionPostal;
 
-    public Cliente(String nombre, String DNI, String direccion, String localidad, String codigoPostal) {
+    public Cliente(String nombre, String DNI, DireccionPostal direccionPostal) {
         this.nombre = nombre;
         //DNI
         if (compruebaDni(DNI)) {
@@ -25,25 +26,32 @@ public class Cliente {
         } else {
             throw new ExcepcionAlquilerVehiculos("Error DNI.");
         }
-        //direccion
-        this.direccion=direccion;
-        //localidad
-        this.localidad = localidad;
-        //Código postal
-        if (compruebaCodigoPostal(codigoPostal)) {
-            this.codigoPostal = codigoPostal;
-        } else {
-            throw new ExcepcionAlquilerVehiculos("Error código postal.");
-        }
+        //direccion postal
+        setDireccionPostal(direccionPostal);
 
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
+    public void setIdentificador(int identificador) {
+        this.identificador = identificador;
+    }
+
+    
+    public void setDireccionPostal(DireccionPostal direccionPostal) {
+        this.direccionPostal = direccionPostal;
     }
 
     public Cliente(Cliente cliente) {
         this.nombre = cliente.nombre;
         this.dni = cliente.dni;
-        this.direccion = cliente.direccion;
-        this.localidad = cliente.localidad;
-        this.codigoPostal = cliente.codigoPostal;
+        this.direccionPostal = cliente.direccionPostal;
     }
 
     private boolean compruebaDni(String DNI) {
@@ -52,30 +60,16 @@ public class Cliente {
         return matcher.matches();
     }
 
-    private boolean compruebaCodigoPostal(String codigoPostal) {
-        Pattern comprueba = Pattern.compile("0[1-9][0-9]{3}|[1-4][0-9]{4}|5[0-2][0-9]{3}");
-        Matcher matcher = comprueba.matcher(codigoPostal);
-        return matcher.matches();
+    public DireccionPostal getDireccionPostal() {
+        return direccionPostal;
     }
-    
-       public String getNombre() {
+
+    public String getNombre() {
         return nombre;
     }
 
     public String getDNI() {
         return dni;
-    }
-
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public String getLocalidad() {
-        return localidad;
-    }
-
-    public String getCodigoPostal() {
-        return codigoPostal;
     }
 
     public int getIdentificador() {
@@ -84,10 +78,8 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente{" + "nombre=" + nombre + ", dni=" + dni + ", direccion=" + direccion + ", localidad=" + localidad + ", codigoPostal=" + codigoPostal + ", identificador=" + identificador + '}';
+        return "Cliente{" + "nombre=" + nombre + ", dni=" + dni + ", identificador=" + identificador + ", direccionPostal=" + direccionPostal + '}';
     }
-    
-    
 
 
 }
