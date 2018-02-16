@@ -44,7 +44,7 @@ public class DireccionPostal {
         this.codigoPostal = codigoPostal;
     }
     
-    boolean compruebaCodigoPostal(String codigoPostal) {
+    private boolean compruebaCodigoPostal(String codigoPostal) {
         Pattern comprueba = Pattern.compile("0[1-9][0-9]{3}|[1-4][0-9]{4}|5[0-2][0-9]{3}");
         Matcher matcher = comprueba.matcher(codigoPostal);
         return matcher.matches();

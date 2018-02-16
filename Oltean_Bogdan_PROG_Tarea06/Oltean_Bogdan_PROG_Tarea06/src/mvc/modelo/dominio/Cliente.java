@@ -31,11 +31,11 @@ public class Cliente {
 
     }
 
-    public void setNombre(String nombre) {
+    private void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-    public void setDni(String dni) {
+    private void setDni(String dni) {
         this.dni = dni;
     }
 
@@ -72,7 +72,7 @@ public class Cliente {
         return dni;
     }
 
-    public int getIdentificador() {
+    private int getIdentificador() {
         return identificador;
     }
 
