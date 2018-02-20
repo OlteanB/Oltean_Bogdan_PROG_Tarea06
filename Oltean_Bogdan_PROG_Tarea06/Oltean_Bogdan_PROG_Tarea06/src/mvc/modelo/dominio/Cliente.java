@@ -19,13 +19,9 @@ public class Cliente {
     private DireccionPostal direccionPostal;
 
     public Cliente(String nombre, String DNI, DireccionPostal direccionPostal) {
-        this.nombre = nombre;
+        this.nombre = new String(nombre);
         //DNI
-        if (compruebaDni(DNI)) {
-            this.dni = DNI;
-        } else {
-            throw new ExcepcionAlquilerVehiculos("Error DNI.");
-        }
+        setDni (DNI);
         //direccion postal
         setDireccionPostal(direccionPostal);
 
@@ -36,7 +32,11 @@ public class Cliente {
     }
 
     private void setDni(String dni) {
-        this.dni = dni;
+        if (compruebaDni(dni)) {
+            this.dni = new String(dni);
+        } else {
+            throw new ExcepcionAlquilerVehiculos("Error DNI.");
+        }
     }
 
     public void setIdentificador(int identificador) {
@@ -45,7 +45,7 @@ public class Cliente {
 
     
     public void setDireccionPostal(DireccionPostal direccionPostal) {
-        this.direccionPostal = direccionPostal;
+        this.direccionPostal = new DireccionPostal(direccionPostal);
     }
 
     public Cliente(Cliente cliente) {
