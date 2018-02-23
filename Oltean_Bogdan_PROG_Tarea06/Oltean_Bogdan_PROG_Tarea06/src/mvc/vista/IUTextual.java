@@ -13,6 +13,7 @@ import mvc.modelo.dominio.Cliente;
 import mvc.modelo.dominio.DireccionPostal;
 import mvc.modelo.dominio.ExcepcionAlquilerVehiculos;
 import mvc.modelo.dominio.Turismo;
+import mvc.vista.utilidades.Consola;
 import utilidades.Entrada;
 
 /**
@@ -26,27 +27,18 @@ public class IUTextual {
         Clientes clientes = new Clientes();
         Turismos turismos = new Turismos();
         //los siguientes clientes y turismos han sido creados para hacer pruebas
-        DireccionPostal dp1 = new DireccionPostal("04005", "calle1", "Almeria");
-        DireccionPostal dp2 = new DireccionPostal("04002", "calle2", "Almeria");
-        Cliente cliente1 = new Cliente("a", "11111111A", dp1);
-        Cliente cliente2 = new Cliente("b", "22222222B", dp2);
+        
+        Cliente cliente1 = new Cliente("a", "11111111A", new DireccionPostal("04005", "Calle1", "Almeria"));
+        Cliente cliente2 = new Cliente("b", "22222222B", new DireccionPostal("04002", "Calle2", "ALmeria"));
         clientes.anadir(cliente1);
         clientes.anadir(cliente2);
         Turismo turismo1 = new Turismo("1111BBB", "Seat", "Ibiza", 6);
         Turismo turismo2 = new Turismo("2222BBB", "Opel", "Opel", 8);
         turismos.anadir(turismo1);
         turismos.anadir(turismo2);
-        System.out.println("******MENÚ******"
-                + "\n1. Añadir cliente"
-                + "\n2. Borrar Cliente"
-                + "\n3. Listar clientes"
-                + "\n4. Añadir turismo"
-                + "\n5. Borrar turismo"
-                + "\n6. Listar turismo"
-                + "\n7. Abrir un alquiler"
-                + "\n8. Cerrar un alquiler"
-                + "\n9. Listar alquileres"
-                + "\n0. Salir.");
+        Consola consola = new Consola();
+        consola.mostrarMenu();
+
         menu = Entrada.entero();
         while (menu != 0) {
             switch (menu) {
@@ -66,8 +58,7 @@ public class IUTextual {
                         String codigoPostal = Entrada.cadena();
                         
                         try {
-                            DireccionPostal dPostal = new DireccionPostal(codigoPostal, direccion, localidad);
-                            anadir = new Cliente(nombre, dni, dPostal);
+                            anadir = new Cliente(nombre, dni, new DireccionPostal(codigoPostal, direccion, localidad));
                             clientes.anadir(anadir);
                         } catch (ExcepcionAlquilerVehiculos e) {
                             System.out.println("ERROR al introducir los datos, intentalo de nuevo");
