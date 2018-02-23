@@ -8,6 +8,8 @@ package mvc.vista.utilidades;
 import mvc.modelo.dominio.Cliente;
 import mvc.modelo.dominio.DireccionPostal;
 import mvc.modelo.dominio.Turismo;
+import mvc.modelo.dominio.Alquiler;
+import utilidades.Entrada;
 
 /**
  *
@@ -62,61 +64,28 @@ public class Consola {
         String nombre = Entrada.cadena();
         System.out.print("DNI: ");
         String dni = Entrada.cadena();
-        System.out.print("Teléfono: ");
-        String telefono = Entrada.cadena();
         System.out.print("Dirección: ");
         String direccion = Entrada.cadena();
         System.out.print("Localidad: ");
         String localidad = Entrada.cadena();
         System.out.print("Código postal: ");
         String codigoPostal = Entrada.cadena();
-        cliente = new Cliente(nombre, dni, new DireccionPostal(direccion, localidad, codigoPostal));
+        cliente = new Cliente(nombre, dni, new DireccionPostal(codigoPostal, direccion, localidad));
         return cliente;
     }
 
-    public static Turismo leerTurismo(Cliente propietario) {
-        Turismo nuevoVehiculo = null;
+    public static Turismo leerTurismo() {
+        Turismo nuevoTurismo = null;
         System.out.print("Matrícula: ");
         String matricula = Entrada.cadena();
         System.out.print("Marca: ");
         String marca = Entrada.cadena();
         System.out.print("Modelo: ");
         String modelo = Entrada.cadena();
-        System.out.print("Color: ");
-        String color = Entrada.cadena();
         System.out.print("Cilindrada: ");
         int cilindrada = Entrada.entero();
-        nuevoVehiculo = new Turismo(matricula, marca, modelo, cilindrada);
-        return nuevoVehiculo;
-    }
-/*
-    public static int leerHorasAnadir() {
-        System.out.print("Introduce el número de horas a añadir: ");
-        int horas = Entrada.entero();
-        return horas;
+        nuevoTurismo = new Turismo(matricula, marca, modelo, cilindrada);
+        return nuevoTurismo;
     }
 
-    public static double leerPrecioMaterial() {
-        System.out.print("Introduce el precio del material a añadir: ");
-        double precioMaterial = Entrada.realDoble();
-        return precioMaterial;
-    }
-
-    public static int elegirTipoAlquiler() {
-        int ordinalTipoTrabajo;
-        do {
-            System.out.printf("Elige el tipo de trabajo: ( %s)", obtenerTiposTrabajo());
-            ordinalTipoTrabajo = Entrada.entero();
-        } while (!TipoTrabajo.esOrdinalValido(ordinalTipoTrabajo));
-        return ordinalTipoTrabajo;
-    }
-
-    private static String obtenerTiposAlquiler() {
-        StringBuilder tiposTrabajos = new StringBuilder("");
-        for (TipoTrabajo tipoTrabajo : TipoTrabajo.values()) {
-            tiposTrabajos.append(tipoTrabajo.ordinal()).append(".- ").append(tipoTrabajo).append(" ");
-        }
-        return tiposTrabajos.toString();
-    }
-*/
 }

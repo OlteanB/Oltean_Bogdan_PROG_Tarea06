@@ -26,6 +26,7 @@ public class IUTextual {
         Alquileres alquileres = new Alquileres();
         Clientes clientes = new Clientes();
         Turismos turismos = new Turismos();
+        Consola consola = new Consola();
         //los siguientes clientes y turismos han sido creados para hacer pruebas
         
         Cliente cliente1 = new Cliente("a", "11111111A", new DireccionPostal("04005", "Calle1", "Almeria"));
@@ -36,7 +37,7 @@ public class IUTextual {
         Turismo turismo2 = new Turismo("2222BBB", "Opel", "Opel", 8);
         turismos.anadir(turismo1);
         turismos.anadir(turismo2);
-        Consola consola = new Consola();
+
         consola.mostrarMenu();
 
         menu = Entrada.entero();
@@ -46,22 +47,12 @@ public class IUTextual {
                     Cliente anadir = null;
                     do {
                         System.out.println("---Añadir cliente---");
-                        System.out.printf("Nombre: ");
-                        String nombre = Entrada.cadena();
-                        System.out.printf("DNI: ");
-                        String dni = Entrada.cadena();
-                        System.out.printf("Dirección: ");
-                        String direccion = Entrada.cadena();
-                        System.out.printf("Localidad: ");
-                        String localidad = Entrada.cadena();
-                        System.out.printf("Código postal: ");
-                        String codigoPostal = Entrada.cadena();
-                        
                         try {
-                            anadir = new Cliente(nombre, dni, new DireccionPostal(codigoPostal, direccion, localidad));
-                            clientes.anadir(anadir);
+                            anadir = consola.leerCliente();
+                            //clientes.anadir(anadir);
                         } catch (ExcepcionAlquilerVehiculos e) {
                             System.out.println("ERROR al introducir los datos, intentalo de nuevo");
+                            anadir = null;
                         }
                     } while (anadir == null);
                     try {
@@ -95,18 +86,11 @@ public class IUTextual {
                     Turismo anadirTurismo = null;
                     do {
                         System.out.println("---Añadir turismo---");
-                        System.out.printf("Matricula: ");
-                        String matricula = Entrada.cadena();
-                        System.out.printf("Marca: ");
-                        String marca = Entrada.cadena();
-                        System.out.printf("Modelo: ");
-                        String modelo = Entrada.cadena();
-                        System.out.printf("Cilindrada: ");
-                        int cilindrada = Entrada.entero();
                         try {
-                            anadirTurismo = new Turismo(matricula, marca, modelo, cilindrada);
+                            anadirTurismo = consola.leerTurismo();
                         } catch (ExcepcionAlquilerVehiculos e) {
                             System.out.println("ERROR al introducir los datos del turismo, intentalo de nuevo");
+                            anadirTurismo = null;
                         }
                     } while (anadirTurismo == null);
                     try {
@@ -189,17 +173,7 @@ public class IUTextual {
                     break;
 
             }
-            System.out.println("******MENÚ******"
-                    + "\n1. Añadir cliente"
-                    + "\n2. Borrar Cliente"
-                    + "\n3. Listar clientes"
-                    + "\n4. Añadir turismo"
-                    + "\n5. Borrar turismo"
-                    + "\n6. Listar turismo"
-                    + "\n7. Abrir un alquiler"
-                    + "\n8. Cerrar un alquiler"
-                    + "\n9. Listar alquileres"
-                    + "\n0. Salir.");
+            consola.mostrarMenu();
             menu = Entrada.entero();
         }
         System.out.println("FIN");
