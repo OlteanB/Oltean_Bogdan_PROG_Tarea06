@@ -5,6 +5,7 @@
  */
 package mvc.vista;
 
+import mvc.controlador.IControladorAlquilerVehiculos;
 import mvc.modelo.dao.Alquileres;
 import mvc.modelo.dao.Clientes;
 import mvc.modelo.dao.Turismos;
@@ -20,162 +21,158 @@ import utilidades.Entrada;
  *
  * @author bogdan
  */
-public class IUTextual {
-    public static void main(String[] args) {
-        int menu;
-        Alquileres alquileres = new Alquileres();
-        Clientes clientes = new Clientes();
-        Turismos turismos = new Turismos();
-        Consola consola = new Consola();
-        //los siguientes clientes y turismos han sido creados para hacer pruebas
-        
-        Cliente cliente1 = new Cliente("a", "11111111A", new DireccionPostal("04005", "Calle1", "Almeria"));
-        Cliente cliente2 = new Cliente("b", "22222222B", new DireccionPostal("04002", "Calle2", "ALmeria"));
-        clientes.anadir(cliente1);
-        clientes.anadir(cliente2);
-        Turismo turismo1 = new Turismo("1111BBB", "Seat", "Ibiza", 6);
-        Turismo turismo2 = new Turismo("2222BBB", "Opel", "Opel", 8);
-        turismos.anadir(turismo1);
-        turismos.anadir(turismo2);
+public class IUTextual implements IVistaAlquilerVehiculos {
 
-        consola.mostrarMenu();
+    IControladorAlquilerVehiculos controlador;
 
-        menu = Entrada.entero();
-        while (menu != 0) {
-            switch (menu) {
-                case 1:
-                    Cliente anadir = null;
-                    do {
-                        System.out.println("---Añadir cliente---");
-                        try {
-                            anadir = consola.leerCliente();
-                            //clientes.anadir(anadir);
-                        } catch (ExcepcionAlquilerVehiculos e) {
-                            System.out.println("ERROR al introducir los datos, intentalo de nuevo");
-                            anadir = null;
-                        }
-                    } while (anadir == null);
-                    try {
-                        clientes.anadir(anadir);
-                    } catch (ExcepcionAlquilerVehiculos a) {
-                        System.out.println("Error añadir cliente");
-                    }
+    public IUTextual() {
+        Opcion.setVista(this);
+    }
 
-                    break;
-                case 2:
-                    System.out.println("---Borrar cliente---");
-                    System.out.println("introduce DNI del cliente a borrar: ");
-                    String borrarDni = Entrada.cadena();
-                    try {
-                        clientes.borrar(borrarDni);
-                        System.out.println("Cliente borrado correctamente.");
-                    } catch (ExcepcionAlquilerVehiculos b) {
-                        System.out.println("Error al borrar el cliente.");
-                    }
-                    break;
-                case 3:
-                    System.out.println("---Listado de clientes----");
-                    for (Cliente cliente : clientes.getClientes()) {
-                        if (cliente != null) {
-                            System.out.println(cliente);
-                        }
-                    }
-                    System.out.println("");
-                    break;
-                case 4:
-                    Turismo anadirTurismo = null;
-                    do {
-                        System.out.println("---Añadir turismo---");
-                        try {
-                            anadirTurismo = consola.leerTurismo();
-                        } catch (ExcepcionAlquilerVehiculos e) {
-                            System.out.println("ERROR al introducir los datos del turismo, intentalo de nuevo");
-                            anadirTurismo = null;
-                        }
-                    } while (anadirTurismo == null);
-                    try {
-                        turismos.anadir(anadirTurismo);
-                    } catch (ExcepcionAlquilerVehiculos a) {
-                        System.out.println("Error añadir turismo");
-                    }
-                    break;
-                case 5:
-                    System.out.println("---Borrar turismo---");
-                    System.out.println("Introduce la matrícula del vehículo que quieres borrar: ");
-                    String borrarMatricula = Entrada.cadena();
-                    try {
-                        turismos.borrar(borrarMatricula);
-                        System.out.println("Turismo borrado correctamente.");
-                    } catch (ExcepcionAlquilerVehiculos c) {
-                        System.out.println("ERROR al borrar el turismo.");
-                    }
-                    break;
-                case 6:
-                    System.out.println("---Listar turismo---");
-                    for (Turismo turismo : turismos.getTurismos()) {
-                        if (turismo != null) {
-                            System.out.println(turismo);
-                        }
-                    }
-                    System.out.println("");
-                    break;
-                case 7:
-                    System.out.println("---Abrir un alquiler---");
-                    System.out.println("Introduce la matrícula del vehiculo: ");
-                    String buscarMatricula = Entrada.cadena();
-                    Turismo turismoBuscado = turismos.buscarTurismo(buscarMatricula);
-                    System.out.println("Introduce DNI del cliente: ");
-                    String buscarDNI = Entrada.cadena();
-                    Cliente clienteBuscado = clientes.buscar(buscarDNI);
-                    if (turismoBuscado == null && clienteBuscado == null) {
-                        System.out.println("Error, los datos introducidos no existen");
-                    } else {
-                        try {
-                            alquileres.openAlquiler(clienteBuscado, turismoBuscado);
-                            System.out.println("Alquiler abierto correctamente.");
-                        } catch (ExcepcionAlquilerVehiculos g) {
-                            System.out.println("Error, alquiler no abierto");
-                        }
-                    }
-                    break;
-                case 8:
-                    System.out.println("---Cerrar un alquiler---");
-                    System.out.println("Introduce la matrícula del vehículo: ");
-                    buscarMatricula = Entrada.cadena();
-                    turismoBuscado = turismos.buscarTurismo(buscarMatricula);
-                    System.out.println("Introduce DNI del cliente: ");
-                    buscarDNI = Entrada.cadena();
-                    clienteBuscado = clientes.buscar(buscarDNI);
-                    if (turismoBuscado == null && clienteBuscado == null) {
-                        System.out.println("ERROR, los datos introducidos no existen");
-                    } else {
-                        try {
-                            alquileres.closeAlquiler(clienteBuscado, turismoBuscado);
-                            System.out.println("Alquiler cerrado correctamente.");
-                        } catch (ExcepcionAlquilerVehiculos e) {
-                            System.out.printf("Error, alquiler no cerrado");
-                        }
-                    }
-                    break;
-                case 9:
-                    System.out.println("---Listado de alquileres---");
-                    for (Alquiler alquiler : alquileres.getAlquiler()) {
-                        if (alquiler != null) {
-                            System.out.println(alquiler);
-                        }
-                    }
-                    System.out.println("");
-                    break;
-                case 0:
-                    break;
-                default:
-                    System.out.println("Opción erronea.");
-                    break;
+    @Override
+    public void setControlador(IControladorAlquilerVehiculos controlador) {
+        this.controlador = controlador;
+    }
 
-            }
-            consola.mostrarMenu();
-            menu = Entrada.entero();
-        }
+    @Override
+    public void comenzar() {
+        int ordinalOpcion;
+        do {
+            Consola.mostrarMenu();
+            ordinalOpcion = Consola.elegirOpcion();
+            Opcion opcion = Opcion.getOpcionSegunOridnal(ordinalOpcion);
+            opcion.ejecutar();
+        } while (ordinalOpcion != Opcion.SALIR.ordinal());
+    }
+
+    public void salir() {
         System.out.println("FIN");
     }
+
+    public void anadirCliente() {
+        Consola.mostrarCabecera("Añadir cliente");
+        try {
+            Cliente cliente = Consola.leerCliente();
+            controlador.anadirCliente(cliente);
+            System.out.println("Cliente añadido satisfactoriamente\n");
+        } catch (ExcepcionAlquilerVehiculos e) {
+            System.out.printf("ERROR: %s%n%n", e.getMessage());
+        }
+    }
+
+    public void borrarCliente() {
+        Consola.mostrarCabecera("Borrar cliente");
+        String dni = Consola.leerDni();
+        try {
+            controlador.borrarCliente(dni);
+            System.out.println("Cliente borrado satisfactoriamente\n");
+        } catch (Exception e) {
+            System.out.printf("ERROR: %s%n%n", e.getMessage());
+        }
+    }
+
+    public void buscarCliente() {
+        Consola.mostrarCabecera("Buscar cliente");
+        String dni = Consola.leerDni();
+        Cliente cliente = controlador.buscarCliente(dni);
+        String mensaje = (cliente != null) ? cliente.toString() : "El cliente no existe";
+        System.out.printf("%s%n%n", mensaje);
+    }
+
+    public void listarClientes() {
+        Consola.mostrarCabecera("Listar clientes");
+        for (Cliente cliente : controlador.obtenerClientes()) {
+            if (cliente != null) {
+                System.out.println(cliente);
+            }
+        }
+        System.out.println("");
+    }
+
+    public void anadirTurismo() {
+        Consola.mostrarCabecera("Añadir turismo");
+        try {
+            Turismo turismo = Consola.leerTurismo();
+            controlador.anadirTurismo(turismo);
+            System.out.println("Turismo añadido satisfactoriamente\n");
+        } catch (ExcepcionAlquilerVehiculos e) {
+            System.out.printf("ERROR: %s%n%n", e.getMessage());
+        }
+    }
+
+    public void borrarTurismo() {
+        Consola.mostrarCabecera("Borrar turismo");
+        String matricula = Consola.leerMatricula();
+        try {
+            controlador.borrarTurismo(matricula);
+            System.out.println("Turismo borrado satisfactoriamente\n");
+        } catch (ExcepcionAlquilerVehiculos e) {
+            System.out.printf("ERROR: %s%n%n", e.getMessage());
+        }
+    }
+
+    public void buscarTurismo() {
+        Consola.mostrarCabecera("Buscar turismo");
+        String matricula = Consola.leerMatricula();
+        Turismo turismoBuscado = controlador.buscarTurismo(matricula);
+        String mensaje = (turismoBuscado != null) ? turismoBuscado.toString() : "El turismo no existe";
+        System.out.printf("%s%n%n", mensaje);
+    }
+
+    public void listarTurismo() {
+        Consola.mostrarCabecera("Listar turismos");
+        for (Turismo turismo : controlador.obtenerTurismos()) {
+            if (turismo != null) {
+                System.out.println(turismo);
+            }
+        }
+        System.out.println("");
+    }
+
+    public void abrirAlquiler() {
+        Consola.mostrarCabecera("Abrir alquiler");
+        String matricula = Consola.leerMatricula();
+        String dni = Consola.leerDni();
+        Turismo turismo = controlador.buscarTurismo(matricula);
+        Cliente cliente = controlador.buscarCliente(dni);
+        if (turismo == null || cliente == null) {
+            System.out.println("Matricula o DNI erroneo\n");
+        } else {
+            try {
+                controlador.abrirAlquiler(cliente, turismo);
+                System.out.println("Alquiler abierto satisfactoriamente\n");
+            } catch (ExcepcionAlquilerVehiculos e) {
+                System.out.printf("ERROR: %s%n%n", e.getMessage());
+            }
+        }
+    }
+
+    public void cerrarAlquiler() {
+        Consola.mostrarCabecera("Cerrar trabajo");
+        String matricula = Consola.leerMatricula();
+        String dni = Consola.leerDni();
+        Cliente cliente = controlador.buscarCliente(dni);
+        Turismo turismo = controlador.buscarTurismo(matricula);
+        if (turismo == null || cliente ==null) {
+            System.out.println("Matricula o DNI erroneo\n");
+        } else {
+            try {
+                controlador.cerrarAlquiler(cliente, turismo);
+                System.out.println("Alquiler cerrado satisfactoriamente\n");
+            } catch (ExcepcionAlquilerVehiculos e) {
+                System.out.printf("ERROR: %s%n%n", e.getMessage());
+            }
+        }
+    }
+
+    public void listarAlquileres() {
+        Consola.mostrarCabecera("Listar trabajos");
+        for (Alquiler alquiler : controlador.obtenerAlquiler()) {
+            if (alquiler != null) {
+                System.out.println(alquiler);
+            }
+        }
+        System.out.println("");
+    }
+
 }

@@ -13,19 +13,19 @@ import mvc.modelo.dominio.ExcepcionAlquilerVehiculos;
  * @author bogdan
  */
 public class Clientes {
-    
+
     private final int MAX_CLIENTES = 20;
-    
+
     private Cliente[] clientes;
-    
-    public Clientes () {        
+
+    public Clientes() {
         clientes = new Cliente[MAX_CLIENTES];
     }
-    
+
     public Cliente[] getClientes() {
-        return clientes;
+        return clientes.clone();
     }
-    
+
     public void anadir(Cliente cliente) {
         int posicion = buscarPrimerIndiceComprobandoExistencia(cliente);
         if (indiceNoSuperaTamano(posicion)) {
@@ -34,8 +34,8 @@ public class Clientes {
             throw new ExcepcionAlquilerVehiculos("El array de clientes está lleno.");
         }
     }
-    
-    private int buscarPrimerIndiceComprobandoExistencia (Cliente cliente) {
+
+    private int buscarPrimerIndiceComprobandoExistencia(Cliente cliente) {
         int posicion = 0;
         boolean posicionEncontrada = false;
         while (posicion < clientes.length && !posicionEncontrada) {
@@ -49,25 +49,26 @@ public class Clientes {
         }
         return posicion;
     }
-    
-    private boolean indiceNoSuperaTamano (int posicion) {
-        if (posicion >= clientes.length)
+
+    private boolean indiceNoSuperaTamano(int posicion) {
+        if (posicion >= clientes.length) {
             return false;
-        else 
+        } else {
             return true;
+        }
     }
-    
-    public void borrar (String dni) {
+
+    public void borrar(String dni) {
         int posicion = buscarIndiceCliente(dni);
         boolean encontrado = false;
-        if(indiceNoSuperaTamano(posicion)){
+        if (indiceNoSuperaTamano(posicion)) {
             desplazarUnaPosicionHaciIzquierda(posicion);
-        }else{
+        } else {
             throw new ExcepcionAlquilerVehiculos("El cliente introducido no existe");
         }
     }
-    
-    private int buscarIndiceCliente(String dni){
+
+    private int buscarIndiceCliente(String dni) {
         int posicion = 0;
         boolean encontrado = false;
         while (posicion < clientes.length && !encontrado) {
@@ -77,26 +78,29 @@ public class Clientes {
                 posicion++;
             }
         }
-        if(encontrado){
+        if (encontrado) {
             return posicion;
-        }else{
+        } else {
             return clientes.length;
         }
-         
+
     }
-    
-    private void desplazarUnaPosicionHaciIzquierda(int posicion){
+
+    private void desplazarUnaPosicionHaciIzquierda(int posicion) {
         for (int i = posicion; i < clientes.length - 1; i++) {
             clientes[i] = clientes[i + 1];
         }
-        clientes[clientes.length - 1] = null;
+        if (posicion == clientes.length - 1) {
+            clientes[clientes.length - 1] = null;
+        }
     }
-    
-    public Cliente buscar(String dni){
+
+    public Cliente buscar(String dni) {
         int posicion = buscarIndiceCliente(dni);
-        if(indiceNoSuperaTamano(posicion))
-            return new Cliente (clientes[posicion]);
-        else
+        if (indiceNoSuperaTamano(posicion)) {
+            return new Cliente(clientes[posicion]);
+        } else {
             return null;
+        }
     }
 }

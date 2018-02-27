@@ -87,7 +87,7 @@ public class Turismos {
             turismos[turismos.length - 1] = null;
     }
     
-    public Turismo buscarTurismo(String matricula){
+    public Turismo buscar(String matricula){
         int posicion = buscarIndiceVehiculo(matricula);
         if(indiceNoSuperaTamano(posicion))
             return new Turismo(turismos[posicion]);

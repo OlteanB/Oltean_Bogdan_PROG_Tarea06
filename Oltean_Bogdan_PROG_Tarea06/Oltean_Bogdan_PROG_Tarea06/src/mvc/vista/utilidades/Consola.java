@@ -9,6 +9,7 @@ import mvc.modelo.dominio.Cliente;
 import mvc.modelo.dominio.DireccionPostal;
 import mvc.modelo.dominio.Turismo;
 import mvc.modelo.dominio.Alquiler;
+import mvc.vista.Opcion;
 import utilidades.Entrada;
 
 /**
@@ -19,17 +20,9 @@ public class Consola {
 
     public static void mostrarMenu() {
         mostrarCabecera("Alquiler Vehiculos");
-        System.out.println("******MENÚ******"
-                + "\n1. Añadir cliente"
-                + "\n2. Borrar Cliente"
-                + "\n3. Listar clientes"
-                + "\n4. Añadir turismo"
-                + "\n5. Borrar turismo"
-                + "\n6. Listar turismo"
-                + "\n7. Abrir un alquiler"
-                + "\n8. Cerrar un alquiler"
-                + "\n9. Listar alquileres"
-                + "\n0. Salir.");
+        for(Opcion opcion: Opcion.values()){
+            System.out.println(opcion);
+        }
     }
 
     public static void mostrarCabecera(String mensaje) {
@@ -42,7 +35,7 @@ public class Consola {
         do {
             System.out.print("\nElige una opción: ");
             ordinalOpcion = Entrada.entero();
-        } while (ordinalOpcion < 0 || ordinalOpcion > 9);
+        } while (ordinalOpcion < 0 || ordinalOpcion > 11);
         return ordinalOpcion;
     }
 
