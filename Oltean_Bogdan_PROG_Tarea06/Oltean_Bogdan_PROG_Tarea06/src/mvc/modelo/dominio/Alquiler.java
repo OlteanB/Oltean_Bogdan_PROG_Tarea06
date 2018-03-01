@@ -5,6 +5,7 @@
  */
 package mvc.modelo.dominio;
 
+import mvc.modelo.vehiculo.Vehiculo;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -15,14 +16,14 @@ import java.util.Date;
 public class Alquiler {
 
     private Cliente cliente;
-    private Turismo turismo;
+    private Vehiculo turismo;
     private Date fecha;
     private int dias;
     private final SimpleDateFormat FORMATO_FECHA = new SimpleDateFormat("dd/MM/yy");
     private final int MS_DIA = 1000 * 60 * 60 * 24;
     private final double PRECIO_DIA = 30;
 
-    public Alquiler(Cliente cliente, Turismo turismo) {
+    public Alquiler(Cliente cliente, Vehiculo turismo) {
         this.cliente = cliente;
         this.turismo = turismo;
         fecha = new Date();
@@ -34,7 +35,7 @@ public class Alquiler {
         return cliente;
     }
 
-    public Turismo getTurismo() {
+    public Vehiculo getTurismo() {
         return turismo;
     }
 

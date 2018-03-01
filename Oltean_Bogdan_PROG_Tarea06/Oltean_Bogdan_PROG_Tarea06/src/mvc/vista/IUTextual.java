@@ -13,7 +13,7 @@ import mvc.modelo.dominio.Alquiler;
 import mvc.modelo.dominio.Cliente;
 import mvc.modelo.dominio.DireccionPostal;
 import mvc.modelo.dominio.ExcepcionAlquilerVehiculos;
-import mvc.modelo.dominio.Turismo;
+import mvc.modelo.vehiculo.Vehiculo;
 import mvc.vista.utilidades.Consola;
 import utilidades.Entrada;
 
@@ -92,7 +92,7 @@ public class IUTextual implements IVistaAlquilerVehiculos {
     public void anadirTurismo() {
         Consola.mostrarCabecera("Añadir turismo");
         try {
-            Turismo turismo = Consola.leerTurismo();
+            Vehiculo turismo = Consola.leerTurismo();
             controlador.anadirTurismo(turismo);
             System.out.println("Turismo añadido satisfactoriamente\n");
         } catch (ExcepcionAlquilerVehiculos e) {
@@ -114,14 +114,14 @@ public class IUTextual implements IVistaAlquilerVehiculos {
     public void buscarTurismo() {
         Consola.mostrarCabecera("Buscar turismo");
         String matricula = Consola.leerMatricula();
-        Turismo turismoBuscado = controlador.buscarTurismo(matricula);
+        Vehiculo turismoBuscado = controlador.buscarTurismo(matricula);
         String mensaje = (turismoBuscado != null) ? turismoBuscado.toString() : "El turismo no existe";
         System.out.printf("%s%n%n", mensaje);
     }
 
     public void listarTurismo() {
         Consola.mostrarCabecera("Listar turismos");
-        for (Turismo turismo : controlador.obtenerTurismos()) {
+        for (Vehiculo turismo : controlador.obtenerTurismos()) {
             if (turismo != null) {
                 System.out.println(turismo);
             }
@@ -133,7 +133,7 @@ public class IUTextual implements IVistaAlquilerVehiculos {
         Consola.mostrarCabecera("Abrir alquiler");
         String matricula = Consola.leerMatricula();
         String dni = Consola.leerDni();
-        Turismo turismo = controlador.buscarTurismo(matricula);
+        Vehiculo turismo = controlador.buscarTurismo(matricula);
         Cliente cliente = controlador.buscarCliente(dni);
         if (turismo == null || cliente == null) {
             System.out.println("Matricula o DNI erroneo\n");
@@ -152,7 +152,7 @@ public class IUTextual implements IVistaAlquilerVehiculos {
         String matricula = Consola.leerMatricula();
         String dni = Consola.leerDni();
         Cliente cliente = controlador.buscarCliente(dni);
-        Turismo turismo = controlador.buscarTurismo(matricula);
+        Vehiculo turismo = controlador.buscarTurismo(matricula);
         if (turismo == null || cliente ==null) {
             System.out.println("Matricula o DNI erroneo\n");
         } else {

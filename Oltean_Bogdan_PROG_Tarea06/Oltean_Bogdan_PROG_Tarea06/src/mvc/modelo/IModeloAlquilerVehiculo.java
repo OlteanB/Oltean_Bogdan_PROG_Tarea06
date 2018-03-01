@@ -7,7 +7,7 @@ package mvc.modelo;
 
 import mvc.modelo.dominio.Alquiler;
 import mvc.modelo.dominio.Cliente;
-import mvc.modelo.dominio.Turismo;
+import mvc.modelo.vehiculo.Vehiculo;
 
 /**
  *
@@ -22,17 +22,17 @@ public interface IModeloAlquilerVehiculo {
 
 	Cliente[] obtenerClientes();
 
-	void anadirTurismo(Turismo turismo);
+	void anadirTurismo(Vehiculo turismo);
 
 	void borrarTurismo(String matricula);
 
-	Turismo buscarTurismo(String matricula);
+	Vehiculo buscarTurismo(String matricula);
 
-	Turismo[] obtenerTurismo();
+	Vehiculo[] obtenerTurismo();
 
-	void abrirAlquiler(Cliente cliente, Turismo turismo);
+	void abrirAlquiler(Cliente cliente, Vehiculo turismo);
 
-	void cerrarAlquiler(Cliente cliente, Turismo turismo);
+	void cerrarAlquiler(Cliente cliente, Vehiculo turismo);
         
         Alquiler[] obtenerAlquiler();
 

@@ -7,7 +7,7 @@ package mvc.vista.utilidades;
 
 import mvc.modelo.dominio.Cliente;
 import mvc.modelo.dominio.DireccionPostal;
-import mvc.modelo.dominio.Turismo;
+import mvc.modelo.vehiculo.Vehiculo;
 import mvc.modelo.dominio.Alquiler;
 import mvc.vista.Opcion;
 import utilidades.Entrada;
@@ -67,8 +67,8 @@ public class Consola {
         return cliente;
     }
 
-    public static Turismo leerTurismo() {
-        Turismo nuevoTurismo = null;
+    public static Vehiculo leerTurismo() {
+        Vehiculo nuevoTurismo = null;
         System.out.print("Matrícula: ");
         String matricula = Entrada.cadena();
         System.out.print("Marca: ");
@@ -77,7 +77,7 @@ public class Consola {
         String modelo = Entrada.cadena();
         System.out.print("Cilindrada: ");
         int cilindrada = Entrada.entero();
-        nuevoTurismo = new Turismo(matricula, marca, modelo, cilindrada);
+        nuevoTurismo = new Vehiculo(matricula, marca, modelo, cilindrada);
         return nuevoTurismo;
     }
 

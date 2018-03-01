@@ -7,7 +7,7 @@ package mvc.controlador;
 
 import mvc.modelo.IModeloAlquilerVehiculo;
 import mvc.modelo.dominio.Cliente;
-import mvc.modelo.dominio.Turismo;
+import mvc.modelo.vehiculo.Vehiculo;
 import mvc.modelo.dominio.Alquiler;
 import mvc.vista.IVistaAlquilerVehiculos;
 
@@ -53,8 +53,8 @@ public class ControladorAlquilerVehiculos implements IControladorAlquilerVehicul
     }
 
     @Override
-    public void anadirTurismo(Turismo turismo) {
-        modelo.anadirTurismo(turismo);
+    public void anadirTurismo(Vehiculo vehiculo) {
+        modelo.anadirTurismo(vehiculo);
     }
 
     @Override
@@ -63,22 +63,22 @@ public class ControladorAlquilerVehiculos implements IControladorAlquilerVehicul
     }
 
     @Override
-    public Turismo buscarTurismo(String matricula) {
+    public Vehiculo buscarTurismo(String matricula) {
         return modelo.buscarTurismo(matricula);
     }
 
     @Override
-    public Turismo[] obtenerTurismos() {
+    public Vehiculo[] obtenerTurismos() {
         return modelo.obtenerTurismo();
     }
 
     @Override
-    public void abrirAlquiler(Cliente cliente, Turismo turismo) {
+    public void abrirAlquiler(Cliente cliente, Vehiculo turismo) {
         modelo.abrirAlquiler(cliente, turismo);
     }
 
     @Override
-    public void cerrarAlquiler(Cliente cliente, Turismo turismo) {
+    public void cerrarAlquiler(Cliente cliente, Vehiculo turismo) {
         modelo.cerrarAlquiler(cliente, turismo);
     }
     

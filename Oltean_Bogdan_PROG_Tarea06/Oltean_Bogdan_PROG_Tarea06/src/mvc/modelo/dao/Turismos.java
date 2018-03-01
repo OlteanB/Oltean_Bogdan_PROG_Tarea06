@@ -6,7 +6,7 @@
 package mvc.modelo.dao;
 
 import mvc.modelo.dominio.ExcepcionAlquilerVehiculos;
-import mvc.modelo.dominio.Turismo;
+import mvc.modelo.vehiculo.Vehiculo;
 
 /**
  *
@@ -14,28 +14,28 @@ import mvc.modelo.dominio.Turismo;
  */
 public class Turismos {
 
-    private Turismo[] turismos;
+    private Vehiculo[] turismos;
 
     private final int MAX_TURISMOS = 20;
 
     public Turismos() {
-        turismos = new Turismo[MAX_TURISMOS];
+        turismos = new Vehiculo[MAX_TURISMOS];
     }
 
-    public void anadir(Turismo turismo) {
+    public void anadir(Vehiculo turismo) {
         int posicion=buscarPrimerIndiceLibreComprobandoExistencia(turismo);
         if (indiceNoSuperaTamano(posicion)) {
-            turismos[posicion] = new Turismo(turismo);
+            turismos[posicion] = new Vehiculo(turismo);
         } else {
             throw new ExcepcionAlquilerVehiculos("El array de vehículos está lleno.");
         }
     }
 
-    public Turismo[] getTurismos() {
+    public Vehiculo[] getTurismos() {
         return turismos;
     }
     
-    private int buscarPrimerIndiceLibreComprobandoExistencia(Turismo turismo){
+    private int buscarPrimerIndiceLibreComprobandoExistencia(Vehiculo turismo){
         int posicion = 0;
         boolean posicionEncontrada = false;
         while (posicion < turismos.length && !posicionEncontrada) {
@@ -87,10 +87,10 @@ public class Turismos {
             turismos[turismos.length - 1] = null;
     }
     
-    public Turismo buscar(String matricula){
+    public Vehiculo buscar(String matricula){
         int posicion = buscarIndiceVehiculo(matricula);
         if(indiceNoSuperaTamano(posicion))
-            return new Turismo(turismos[posicion]);
+            return new Vehiculo(turismos[posicion]);
         else
             return null;
     }

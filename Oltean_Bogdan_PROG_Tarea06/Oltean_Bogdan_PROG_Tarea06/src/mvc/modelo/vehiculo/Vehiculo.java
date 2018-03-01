@@ -3,22 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mvc.modelo.dominio;
+package mvc.modelo.vehiculo;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import mvc.modelo.dominio.ExcepcionAlquilerVehiculos;
 
 /**
  *
  * @author bogdan
  */
-public class Turismo {
+public class Vehiculo {
 
     private String matricula, marca, modelo;
     private int cilindrada;
     private boolean disponible;
 
-    public Turismo(String matricula, String marca, String modelo, int cilindrada) {
+    public Vehiculo(String matricula, String marca, String modelo, int cilindrada) {
         if (compruebaMatricula(matricula)) {
             this.matricula = matricula;
         } else {
@@ -29,11 +30,11 @@ public class Turismo {
         this.cilindrada = cilindrada;
     }
 
-    public Turismo(Turismo turismo) {
-        this.matricula = turismo.matricula;
-        this.marca = turismo.marca;
-        this.modelo = turismo.modelo;
-        this.cilindrada = turismo.cilindrada;
+    public Vehiculo(Vehiculo vehiculo) {
+        this.matricula = vehiculo.matricula;
+        this.marca = vehiculo.marca;
+        this.modelo = vehiculo.modelo;
+        this.cilindrada = vehiculo.cilindrada;
     }
 
     private boolean compruebaMatricula(String matricula) {
@@ -68,7 +69,7 @@ public class Turismo {
 
     @Override
     public String toString() {
-        return "Turismo{" + "matricula=" + matricula + ", marca=" + marca + ", modelo=" + modelo + ", cilindrada=" + cilindrada + ", disponible=" + disponible + '}';
+        return "Vehiculo{" + "matricula=" + matricula + ", marca=" + marca + ", modelo=" + modelo + ", cilindrada=" + cilindrada + ", disponible=" + disponible + '}';
     }
 
 }

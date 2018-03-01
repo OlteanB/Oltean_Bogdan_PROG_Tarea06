@@ -10,7 +10,7 @@ import mvc.modelo.dao.Alquileres;
 import mvc.modelo.dominio.Alquiler;
 import mvc.modelo.dominio.Cliente;
 import mvc.modelo.dominio.DireccionPostal;
-import mvc.modelo.dominio.Turismo;
+import mvc.modelo.vehiculo.Vehiculo;
 
 /**
  *
@@ -48,7 +48,7 @@ public class AlquilerVehiculo implements IModeloAlquilerVehiculo {
 	}
 	
     @Override
-	public void anadirTurismo(Turismo turismo) {
+	public void anadirTurismo(Vehiculo turismo) {
 		turismos.anadir(turismo);
 	}
 
@@ -59,22 +59,22 @@ public class AlquilerVehiculo implements IModeloAlquilerVehiculo {
 	}
 	
     @Override
-	public Turismo buscarTurismo(String matricula) {
+	public Vehiculo buscarTurismo(String matricula) {
 		return turismos.buscar(matricula);
 	}
 	
     @Override
-	public Turismo[] obtenerTurismo() {
+	public Vehiculo[] obtenerTurismo() {
 		return turismos.getTurismos();
 	}
 	
     @Override
-	public void abrirAlquiler(Cliente cliente, Turismo turismo) {
+	public void abrirAlquiler(Cliente cliente, Vehiculo turismo) {
 		alquileres.openAlquiler(cliente, turismo);
 	}
 	
     @Override
-	public void cerrarAlquiler(Cliente cliente, Turismo turismo) {
+	public void cerrarAlquiler(Cliente cliente, Vehiculo turismo) {
 		alquileres.closeAlquiler(cliente, turismo);
 	}
 	
@@ -89,8 +89,8 @@ public class AlquilerVehiculo implements IModeloAlquilerVehiculo {
 		Cliente cliente2 = new Cliente("bb", "22222222B", new DireccionPostal("04002", "Calle2", "Almeria"));
 		anadirCliente(cliente1);
 		anadirCliente(cliente2);
-		Turismo turismo1 = new Turismo("1111BBB", "Seat", "Ibiza", 6);
-		Turismo turismo2 = new Turismo("2222BBB", "Opel", "Opel", 8);
+		Vehiculo turismo1 = new Vehiculo("1111BBB", "Seat", "Ibiza", 6);
+		Vehiculo turismo2 = new Vehiculo("2222BBB", "Opel", "Opel", 8);
 		anadirTurismo(turismo1);
 		anadirTurismo(turismo2);
 }

@@ -8,7 +8,7 @@ package mvc.modelo.dao;
 import mvc.modelo.dominio.Alquiler;
 import mvc.modelo.dominio.Cliente;
 import mvc.modelo.dominio.ExcepcionAlquilerVehiculos;
-import mvc.modelo.dominio.Turismo;
+import mvc.modelo.vehiculo.Vehiculo;
 
 /**
  *
@@ -27,7 +27,7 @@ public class Alquileres {
         return alquileres.clone();
     }
     
-    public void openAlquiler(Cliente cliente, Turismo turismo) {
+    public void openAlquiler(Cliente cliente, Vehiculo turismo) {
         int posicion = 0;
         boolean posicionEncontrada = false;
         while (posicion < alquileres.length && !posicionEncontrada) {
@@ -49,7 +49,7 @@ public class Alquileres {
 
     }
 
-    public void closeAlquiler(Cliente cliente, Turismo turismo) {
+    public void closeAlquiler(Cliente cliente, Vehiculo turismo) {
         int posicion = 0;
         boolean encontrado = false;
         while (posicion < alquileres.length && !encontrado) {

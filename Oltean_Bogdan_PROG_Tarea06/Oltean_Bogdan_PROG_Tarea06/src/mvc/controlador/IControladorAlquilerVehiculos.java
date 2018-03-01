@@ -6,7 +6,7 @@
 package mvc.controlador;
 
 import mvc.modelo.dominio.Cliente;
-import mvc.modelo.dominio.Turismo;
+import mvc.modelo.vehiculo.Vehiculo;
 import mvc.modelo.dominio.Alquiler;
 
 /**
@@ -15,13 +15,13 @@ import mvc.modelo.dominio.Alquiler;
  */
 public interface IControladorAlquilerVehiculos {
 
-    void abrirAlquiler(Cliente cliente, Turismo turismo);
+    void abrirAlquiler(Cliente cliente, Vehiculo turismo);
 
     void anadirCliente(Cliente cliente);
 
     void anadirDatosPrueba();
 
-    void anadirTurismo(Turismo turismo);
+    void anadirTurismo(Vehiculo turismo);
 
     void borrarCliente(String dni);
 
@@ -29,9 +29,9 @@ public interface IControladorAlquilerVehiculos {
 
     Cliente buscarCliente(String dni);
 
-    Turismo buscarTurismo(String matricula);
+    Vehiculo buscarTurismo(String matricula);
 
-    void cerrarAlquiler(Cliente cliente, Turismo turismo);
+    void cerrarAlquiler(Cliente cliente, Vehiculo turismo);
 
     void comenzar();
 
@@ -39,6 +39,6 @@ public interface IControladorAlquilerVehiculos {
 
     Cliente[] obtenerClientes();
 
-    Turismo[] obtenerTurismos();
+    Vehiculo[] obtenerTurismos();
 
 }
