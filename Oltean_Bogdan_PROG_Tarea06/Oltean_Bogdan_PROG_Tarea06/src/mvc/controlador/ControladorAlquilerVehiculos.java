@@ -9,6 +9,7 @@ import mvc.modelo.IModeloAlquilerVehiculo;
 import mvc.modelo.dominio.Cliente;
 import mvc.modelo.dominio.vehiculo.Vehiculo;
 import mvc.modelo.dominio.Alquiler;
+import mvc.modelo.dominio.vehiculo.TipoVehiculo;
 import mvc.vista.IVistaAlquilerVehiculos;
 
 /**
@@ -53,8 +54,8 @@ public class ControladorAlquilerVehiculos implements IControladorAlquilerVehicul
     }
 
     @Override
-    public void anadirTurismo(Vehiculo vehiculo) {
-        modelo.anadirTurismo(vehiculo);
+    public void anadirVehiculo(Vehiculo vehiculo, TipoVehiculo tipoVehiculo) {
+        modelo.anadirVehiculo(vehiculo, tipoVehiculo);
     }
 
     @Override

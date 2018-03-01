@@ -7,6 +7,7 @@ package mvc.modelo;
 
 import mvc.modelo.dominio.Alquiler;
 import mvc.modelo.dominio.Cliente;
+import mvc.modelo.dominio.vehiculo.TipoVehiculo;
 import mvc.modelo.dominio.vehiculo.Vehiculo;
 
 /**
@@ -22,7 +23,7 @@ public interface IModeloAlquilerVehiculo {
 
 	Cliente[] obtenerClientes();
 
-	void anadirTurismo(Vehiculo turismo);
+	void anadirVehiculo(Vehiculo vehiculo, TipoVehiculo tipoVehiculo);
 
 	void borrarTurismo(String matricula);
 

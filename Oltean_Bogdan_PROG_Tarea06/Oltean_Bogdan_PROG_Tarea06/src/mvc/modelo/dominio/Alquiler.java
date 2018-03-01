@@ -23,12 +23,12 @@ public class Alquiler {
     private final int MS_DIA = 1000 * 60 * 60 * 24;
     private final double PRECIO_DIA = 30;
 
-    public Alquiler(Cliente cliente, Vehiculo turismo) {
+    public Alquiler(Cliente cliente, Vehiculo vehiculo) {
         this.cliente = cliente;
-        this.vehiculo = turismo;
+        this.vehiculo = vehiculo;
         fecha = new Date();
         dias = 0;
-        turismo.setDisponible(false);
+        vehiculo.setDisponible(false);
     }
 
     public Cliente getCliente() {
@@ -62,6 +62,10 @@ public class Alquiler {
     public double getPrecio() {
         double precio = dias * PRECIO_DIA + vehiculo.FACTOR_CILINDRADA / 100;
         return precio;
+    }
+    
+    public double getPrecioFijo(){
+        return getPrecio()+vehiculo.getPrecioEspecifico();
     }
 
     @Override

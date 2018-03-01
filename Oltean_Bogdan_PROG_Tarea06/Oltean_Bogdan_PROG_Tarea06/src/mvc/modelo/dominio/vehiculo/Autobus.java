@@ -11,8 +11,12 @@ package mvc.modelo.dominio.vehiculo;
  */
 public class Autobus extends Vehiculo {
 
-    public Autobus(Vehiculo vehiculo) {
-        super(vehiculo);
+    public Autobus(String matricula, String marca, String modelo, DatosTecnicosVehiculo datosTecnicos) {
+        super(matricula, marca, modelo, datosTecnicos);
+    }
+    
+    public Autobus(Autobus autobus){
+        super(autobus);
     }
 
     @Override
@@ -22,6 +26,6 @@ public class Autobus extends Vehiculo {
 
     @Override
     public double getPrecioEspecifico() {
-        return getPrecioEspecifico() + FACTOR_CILINDRADA / 50 + 1 * FACTOR_NUMERO_PLAZAS;
+        return FACTOR_CILINDRADA / 50 + 1 * FACTOR_NUMERO_PLAZAS;
     }
 }

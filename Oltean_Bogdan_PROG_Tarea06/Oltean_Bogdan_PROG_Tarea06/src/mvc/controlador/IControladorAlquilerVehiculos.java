@@ -8,6 +8,7 @@ package mvc.controlador;
 import mvc.modelo.dominio.Cliente;
 import mvc.modelo.dominio.vehiculo.Vehiculo;
 import mvc.modelo.dominio.Alquiler;
+import mvc.modelo.dominio.vehiculo.TipoVehiculo;
 
 /**
  *
@@ -21,7 +22,7 @@ public interface IControladorAlquilerVehiculos {
 
     void anadirDatosPrueba();
 
-    void anadirTurismo(Vehiculo turismo);
+    void anadirVehiculo(Vehiculo vehiculo, TipoVehiculo tipoVehiculo);
 
     void borrarCliente(String dni);
 

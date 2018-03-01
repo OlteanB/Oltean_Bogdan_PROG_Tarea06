@@ -14,31 +14,31 @@ import mvc.modelo.dominio.ExcepcionAlquilerVehiculos;
 public enum TipoVehiculo {
 
     TURISMO("Vehiculo turismo") {
-        public Vehiculo getInstancia(Vehiculo vehiculo) {
-            return new Vehiculo(vehiculo);
+        public Vehiculo getInstancia(String matricula, String marca, String modelo, DatosTecnicosVehiculo datosTecnicos) {
+            return new Turismo(matricula, marca, modelo, datosTecnicos);
         }
     },
     DE_CARGA("Vehiculo de carga") {
-        public Vehiculo getInstancia(Vehiculo vehiculo) {
-            return new Vehiculo(vehiculo);
+        public Vehiculo getInstancia(String matricula, String marca, String modelo, DatosTecnicosVehiculo datosTecnicos) {
+            return new DeCarga(matricula, marca, modelo, datosTecnicos);
         }
     },
     AUTOBUS("Vehiculo autobus") {
-        public Vehiculo getInstancia(Vehiculo vehiculo) {
-            return new Vehiculo(vehiculo);
+        public Vehiculo getInstancia(String matricula, String marca, String modelo, DatosTecnicosVehiculo datosTecnicos) {
+            return new Autobus(matricula, marca, modelo, datosTecnicos);
         }
     };
 
-    private String tipo;
+    private String tipoVehiculo;
 
-    private TipoVehiculo(String tipo) {
-        this.tipo = tipo;
+    private TipoVehiculo(String tipoVehiculo) {
+        this.tipoVehiculo = tipoVehiculo;
     }
 
-    public abstract Vehiculo getInstancia(Vehiculo vehiculo);
+    public abstract Vehiculo getInstancia(String matricula, String marca, String modelo, DatosTecnicosVehiculo datosTecnicos);
 
     public String toString() {
-        return tipo;
+        return tipoVehiculo;
     }
 
     public static TipoVehiculo getTipoVehiculoSegunOrdinal(int ordinal) {

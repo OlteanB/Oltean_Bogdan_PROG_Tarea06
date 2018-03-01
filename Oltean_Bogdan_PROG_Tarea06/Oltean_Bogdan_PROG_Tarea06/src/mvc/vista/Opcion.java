@@ -39,7 +39,7 @@ public enum Opcion {
     },
     ANADIR_TURISMO("Añadir turismo") {
         public void ejecutar() {
-            vista.anadirTurismo();
+            vista.anadirVehiculo();
         }
     },
     BORRAR_TURISMO("Borrar turismo") {

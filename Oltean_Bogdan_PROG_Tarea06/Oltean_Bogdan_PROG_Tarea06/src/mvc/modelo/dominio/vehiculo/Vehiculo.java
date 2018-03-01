@@ -14,15 +14,15 @@ import mvc.modelo.dominio.ExcepcionAlquilerVehiculos;
  * @author bogdan
  */
 public abstract class Vehiculo {
+    private DatosTecnicosVehiculo datosTecnicos;
 
     private String matricula, marca, modelo;
     private boolean disponible;
     
-    public final double FACTOR_CILINDRADA=0;
-    public final double FACTOR_NUMERO_PLAZAS=0;
-    public final double FACTOR_PMA=0;
+    public final double FACTOR_CILINDRADA=datosTecnicos.getCilindrada();
+    public final double FACTOR_NUMERO_PLAZAS=datosTecnicos.getNumeroPlazas();
+    public final double FACTOR_PMA=datosTecnicos.getPma();
     
-    private DatosTecnicosVehiculo datosTecnicosVehiculo;
     
     public abstract TipoVehiculo getTipoVehiculo();
     public abstract double getPrecioEspecifico();
@@ -47,14 +47,14 @@ public abstract class Vehiculo {
         }
         this.marca = marca;
         this.modelo = modelo;
-        this.datosTecnicosVehiculo=datosTecnicosVehiculo;
+        this.datosTecnicos=datosTecnicosVehiculo;
     }
 
     public Vehiculo(Vehiculo vehiculo) {
         this.matricula = vehiculo.matricula;
         this.marca = vehiculo.marca;
         this.modelo = vehiculo.modelo;
-        this.datosTecnicosVehiculo=vehiculo.datosTecnicosVehiculo;
+        this.datosTecnicos=vehiculo.getDatosTecnicos();
     }
 
     private boolean compruebaMatricula(String matricula) {
@@ -76,7 +76,7 @@ public abstract class Vehiculo {
     }
 
     public DatosTecnicosVehiculo getDatosTecnicos() {
-        return datosTecnicosVehiculo;
+        return datosTecnicos;
     }
 
     
@@ -91,7 +91,7 @@ public abstract class Vehiculo {
 
     @Override
     public String toString() {
-        return "Vehiculo{" + "matricula=" + matricula + ", marca=" + marca + ", modelo=" + modelo + ", disponible=" + disponible + ", datosTecnicosVehiculo=" + datosTecnicosVehiculo + '}';
+        return "Vehiculo{" + "matricula=" + matricula + ", marca=" + marca + ", modelo=" + modelo + ", disponible=" + disponible + ", datosTecnicosVehiculo=" + datosTecnicos + '}';
     }
 
     

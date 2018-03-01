@@ -13,6 +13,7 @@ import mvc.modelo.dominio.Alquiler;
 import mvc.modelo.dominio.Cliente;
 import mvc.modelo.dominio.DireccionPostal;
 import mvc.modelo.dominio.ExcepcionAlquilerVehiculos;
+import mvc.modelo.dominio.vehiculo.TipoVehiculo;
 import mvc.modelo.dominio.vehiculo.Vehiculo;
 import mvc.vista.utilidades.Consola;
 import utilidades.Entrada;
@@ -89,11 +90,11 @@ public class IUTextual implements IVistaAlquilerVehiculos {
         System.out.println("");
     }
 
-    public void anadirTurismo() {
-        Consola.mostrarCabecera("Añadir turismo");
+    public void anadirVehiculo() {
+        Consola.mostrarCabecera("Añadir Vehiculo");
         try {
-            Vehiculo turismo = Consola.leerVehiculo();
-            controlador.anadirTurismo(turismo);
+            Vehiculo vehiculo = Consola.leerVehiculo();
+            controlador.anadirVehiculo(vehiculo, tipoVehiculo);
             System.out.println("Turismo añadido satisfactoriamente\n");
         } catch (ExcepcionAlquilerVehiculos e) {
             System.out.printf("ERROR: %s%n%n", e.getMessage());

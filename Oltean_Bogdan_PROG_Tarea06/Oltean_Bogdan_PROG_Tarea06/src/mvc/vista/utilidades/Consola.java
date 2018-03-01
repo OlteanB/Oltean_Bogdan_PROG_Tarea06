@@ -69,7 +69,7 @@ public class Consola {
     }
 
     public static Vehiculo leerVehiculo() {
-        Vehiculo nuevoTurismo = null;
+        Vehiculo nuevoVehiculo = null;
         System.out.print("Matrícula: ");
         String matricula = Entrada.cadena();
         System.out.print("Marca: ");
@@ -82,8 +82,8 @@ public class Consola {
         int numeroPlazas= Entrada.entero();
         System.out.println("PMA: ");
         int pma = Entrada.entero();
-        nuevoTurismo = new Vehiculo(matricula, marca, modelo,new DatosTecnicosVehiculo(cilindrada, numeroPlazas, pma));
-        return nuevoTurismo;
+        nuevoVehiculo = new Vehiculo(matricula, marca, modelo,new DatosTecnicosVehiculo(cilindrada, numeroPlazas, pma));
+        return nuevoVehiculo;
     }
 
 }

@@ -6,6 +6,7 @@
 package mvc.modelo.dao;
 
 import mvc.modelo.dominio.ExcepcionAlquilerVehiculos;
+import mvc.modelo.dominio.vehiculo.TipoVehiculo;
 import mvc.modelo.dominio.vehiculo.Vehiculo;
 
 /**
@@ -16,16 +17,16 @@ public class Vechiculos {
 
     private Vehiculo[] vehiculos;
 
-    private final int MAX_TURISMOS = 20;
+    private final int MAX_VEHICULOS = 20;
 
     public Vechiculos() {
-        vehiculos = new Vehiculo[MAX_TURISMOS];
+        vehiculos = new Vehiculo[MAX_VEHICULOS];
     }
 
-    public void anadir(Vehiculo vehiculo) {
+    public void anadir(Vehiculo vehiculo, TipoVehiculo tipoVehiculo) {
         int posicion=buscarPrimerIndiceLibreComprobandoExistencia(vehiculo);
         if (indiceNoSuperaTamano(posicion)) {
-            vehiculos[posicion] = new Vehiculo(vehiculo);
+            vehiculos[posicion] = tipoVehiculo.getInstancia(vehiculo.getMatricula(), vehiculo.getMarca(), vehiculo.getModelo(), vehiculo.getDatosTecnicos());
         } else {
             throw new ExcepcionAlquilerVehiculos("El array de vehículos está lleno.");
         }
@@ -90,7 +91,7 @@ public class Vechiculos {
     public Vehiculo buscar(String matricula){
         int posicion = buscarIndiceVehiculo(matricula);
         if(indiceNoSuperaTamano(posicion))
-            return new Vehiculo(vehiculos[posicion]);
+            return (vehiculos[posicion]);
         else
             return null;
     }

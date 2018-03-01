@@ -11,6 +11,7 @@ import mvc.modelo.dominio.Alquiler;
 import mvc.modelo.dominio.Cliente;
 import mvc.modelo.dominio.DireccionPostal;
 import mvc.modelo.dominio.vehiculo.DatosTecnicosVehiculo;
+import mvc.modelo.dominio.vehiculo.TipoVehiculo;
 import mvc.modelo.dominio.vehiculo.Vehiculo;
 
 /**
@@ -19,12 +20,12 @@ import mvc.modelo.dominio.vehiculo.Vehiculo;
  */
 public class AlquilerVehiculo implements IModeloAlquilerVehiculo {
     private Clientes clientes;
-	private Vechiculos turismos;
+	private Vechiculos vehiculos;
 	private Alquileres alquileres;
 	
 	public AlquilerVehiculo() {
 		clientes = new Clientes();
-		turismos = new Vechiculos();
+		vehiculos = new Vechiculos();
 		alquileres = new Alquileres();
 	}
 	
@@ -49,24 +50,24 @@ public class AlquilerVehiculo implements IModeloAlquilerVehiculo {
 	}
 	
     @Override
-	public void anadirTurismo(Vehiculo turismo) {
-		turismos.anadir(turismo);
+	public void anadirVehiculo(Vehiculo vehiculo, TipoVehiculo tipoVehiculo) {
+		vehiculos.anadir(vehiculo, tipoVehiculo);
 	}
 
 	
     @Override
 	public void borrarTurismo(String matricula) {
-		turismos.borrar(matricula);
+		vehiculos.borrar(matricula);
 	}
 	
     @Override
 	public Vehiculo buscarTurismo(String matricula) {
-		return turismos.buscar(matricula);
+		return vehiculos.buscar(matricula);
 	}
 	
     @Override
 	public Vehiculo[] obtenerTurismo() {
-		return turismos.getTurismos();
+		return vehiculos.getTurismos();
 	}
 	
     @Override
@@ -90,9 +91,11 @@ public class AlquilerVehiculo implements IModeloAlquilerVehiculo {
 		Cliente cliente2 = new Cliente("bb", "22222222B", new DireccionPostal("04002", "Calle2", "Almeria"));
 		anadirCliente(cliente1);
 		anadirCliente(cliente2);
-		Vehiculo turismo1 = new Vehiculo("1111BBB", "Seat", "Ibiza", new DatosTecnicosVehiculo(1000, 5, 100));
-		Vehiculo turismo2 = new Vehiculo("2222BBB", "Opel", "Opel", new DatosTecnicosVehiculo(1100, 5, 200));
-		anadirTurismo(turismo1);
-		anadirTurismo(turismo2);
+                Vehiculo vehiculo1 = TipoVehiculo.TURISMO.getInstancia("1111BBB", "Seat", "Ibiza", new DatosTecnicosVehiculo (1000, 5, 100));
+                Vehiculo vehiculo2 = TipoVehiculo.TURISMO.getInstancia("2222CCC", "Opel", "Astra", new DatosTecnicosVehiculo (1100, 5, 200));
+                Vehiculo vehiculo3 = TipoVehiculo.TURISMO.getInstancia("3333DDD", "Marca", "Modelo", new DatosTecnicosVehiculo (1200, 5, 300));
+                anadirVehiculo(vehiculo1, TipoVehiculo.TURISMO);
+                anadirVehiculo(vehiculo2, TipoVehiculo.DE_CARGA);
+                anadirVehiculo(vehiculo3, TipoVehiculo.AUTOBUS);
 }
 }
