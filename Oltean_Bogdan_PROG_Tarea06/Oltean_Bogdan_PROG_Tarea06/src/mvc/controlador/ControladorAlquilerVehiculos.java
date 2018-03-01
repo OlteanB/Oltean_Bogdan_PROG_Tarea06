@@ -59,28 +59,28 @@ public class ControladorAlquilerVehiculos implements IControladorAlquilerVehicul
     }
 
     @Override
-    public void borrarTurismo(String matricula) {
-        modelo.borrarTurismo(matricula);
+    public void borrarVehiculo(String matricula) {
+        modelo.borrarVehiculo(matricula);
     }
 
     @Override
-    public Vehiculo buscarTurismo(String matricula) {
-        return modelo.buscarTurismo(matricula);
+    public Vehiculo buscarVehiculo(String matricula) {
+        return modelo.buscarVehiculo(matricula);
     }
 
     @Override
-    public Vehiculo[] obtenerTurismos() {
-        return modelo.obtenerTurismo();
+    public Vehiculo[] obtenerVehiculos() {
+        return modelo.obtenerVehiculo();
     }
 
     @Override
-    public void abrirAlquiler(Cliente cliente, Vehiculo turismo) {
-        modelo.abrirAlquiler(cliente, turismo);
+    public void abrirAlquiler(Cliente cliente, Vehiculo vehiculo) {
+        modelo.abrirAlquiler(cliente, vehiculo);
     }
 
     @Override
-    public void cerrarAlquiler(Cliente cliente, Vehiculo turismo) {
-        modelo.cerrarAlquiler(cliente, turismo);
+    public void cerrarAlquiler(Cliente cliente, Vehiculo vehiculo) {
+        modelo.cerrarAlquiler(cliente, vehiculo);
     }
     
     @Override

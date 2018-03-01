@@ -23,18 +23,18 @@ import utilidades.Entrada;
  * @author bogdan
  */
 public class IUTextual implements IVistaAlquilerVehiculos {
-    
+
     IControladorAlquilerVehiculos controlador;
-    
+
     public IUTextual() {
         Opcion.setVista(this);
     }
-    
+
     @Override
     public void setControlador(IControladorAlquilerVehiculos controlador) {
         this.controlador = controlador;
     }
-    
+
     @Override
     public void comenzar() {
         int ordinalOpcion;
@@ -45,11 +45,13 @@ public class IUTextual implements IVistaAlquilerVehiculos {
             opcion.ejecutar();
         } while (ordinalOpcion != Opcion.SALIR.ordinal());
     }
-    
+
+    @Override
     public void salir() {
         System.out.println("FIN");
     }
-    
+
+    @Override
     public void anadirCliente() {
         Consola.mostrarCabecera("Añadir cliente");
         try {
@@ -60,7 +62,8 @@ public class IUTextual implements IVistaAlquilerVehiculos {
             System.out.printf("ERROR: %s%n%n", e.getMessage());
         }
     }
-    
+
+    @Override
     public void borrarCliente() {
         Consola.mostrarCabecera("Borrar cliente");
         String dni = Consola.leerDni();
@@ -71,7 +74,8 @@ public class IUTextual implements IVistaAlquilerVehiculos {
             System.out.printf("ERROR: %s%n%n", e.getMessage());
         }
     }
-    
+
+    @Override
     public void buscarCliente() {
         Consola.mostrarCabecera("Buscar cliente");
         String dni = Consola.leerDni();
@@ -79,7 +83,8 @@ public class IUTextual implements IVistaAlquilerVehiculos {
         String mensaje = (cliente != null) ? cliente.toString() : "El cliente no existe";
         System.out.printf("%s%n%n", mensaje);
     }
-    
+
+    @Override
     public void listarClientes() {
         Consola.mostrarCabecera("Listar clientes");
         for (Cliente cliente : controlador.obtenerClientes()) {
@@ -89,84 +94,91 @@ public class IUTextual implements IVistaAlquilerVehiculos {
         }
         System.out.println("");
     }
-    
+
+    @Override
     public void anadirVehiculo() {
         Consola.mostrarCabecera("Añadir Vehiculo");
         try {
             Vehiculo vehiculo = Consola.leerVehiculo();
             int tipoVehiculo = Consola.elegirTipoVehiculo();
             controlador.anadirVehiculo(vehiculo, TipoVehiculo.getTipoVehiculoSegunOrdinal(tipoVehiculo));
-            System.out.println("Turismo añadido satisfactoriamente\n");
+            System.out.println("Vehiculo añadido satisfactoriamente\n");
         } catch (ExcepcionAlquilerVehiculos e) {
             System.out.printf("ERROR: %s%n%n", e.getMessage());
         }
     }
-    
-    public void borrarTurismo() {
-        Consola.mostrarCabecera("Borrar turismo");
+
+    @Override
+    public void borrarVehiculo() {
+        Consola.mostrarCabecera("Borrar vehiculo");
         String matricula = Consola.leerMatricula();
         try {
-            controlador.borrarTurismo(matricula);
-            System.out.println("Turismo borrado satisfactoriamente\n");
+            controlador.borrarVehiculo(matricula);
+            System.out.println("Vehiculo borrado satisfactoriamente\n");
         } catch (ExcepcionAlquilerVehiculos e) {
             System.out.printf("ERROR: %s%n%n", e.getMessage());
         }
     }
-    
-    public void buscarTurismo() {
-        Consola.mostrarCabecera("Buscar turismo");
+
+    @Override
+    public void buscarVehiculo() {
+        Consola.mostrarCabecera("Buscar vehiculo");
         String matricula = Consola.leerMatricula();
-        Vehiculo turismoBuscado = controlador.buscarTurismo(matricula);
-        String mensaje = (turismoBuscado != null) ? turismoBuscado.toString() : "El turismo no existe";
+        Vehiculo vehiculoBuscado = controlador.buscarVehiculo(matricula);
+        String mensaje = (vehiculoBuscado != null) ? vehiculoBuscado.toString() : "El turismo no existe";
         System.out.printf("%s%n%n", mensaje);
     }
-    
-    public void listarTurismo() {
-        Consola.mostrarCabecera("Listar turismos");
-        for (Vehiculo turismo : controlador.obtenerTurismos()) {
-            if (turismo != null) {
-                System.out.println(turismo);
+
+    @Override
+    public void listarVehiculo() {
+        Consola.mostrarCabecera("Listar vehiculos");
+        for (Vehiculo vehiculo : controlador.obtenerVehiculos()) {
+            if (vehiculo != null) {
+                System.out.println(vehiculo);
             }
         }
         System.out.println("");
     }
-    
+
+    @Override
     public void abrirAlquiler() {
         Consola.mostrarCabecera("Abrir alquiler");
         String matricula = Consola.leerMatricula();
         String dni = Consola.leerDni();
-        Vehiculo turismo = controlador.buscarTurismo(matricula);
+        Vehiculo vehiculo = controlador.buscarVehiculo(matricula);
         Cliente cliente = controlador.buscarCliente(dni);
-        if (turismo == null || cliente == null) {
+        if (vehiculo == null || cliente == null) {
             System.out.println("Matricula o DNI erroneo\n");
         } else {
             try {
-                controlador.abrirAlquiler(cliente, turismo);
+                controlador.abrirAlquiler(cliente, vehiculo);
                 System.out.println("Alquiler abierto satisfactoriamente\n");
             } catch (ExcepcionAlquilerVehiculos e) {
                 System.out.printf("ERROR: %s%n%n", e.getMessage());
             }
         }
     }
-    
+
+    @Override
     public void cerrarAlquiler() {
         Consola.mostrarCabecera("Cerrar trabajo");
         String matricula = Consola.leerMatricula();
         String dni = Consola.leerDni();
         Cliente cliente = controlador.buscarCliente(dni);
-        Vehiculo turismo = controlador.buscarTurismo(matricula);
-        if (turismo == null || cliente == null) {
+        Vehiculo vehiculo = controlador.buscarVehiculo(matricula);
+        if (vehiculo == null || cliente == null) {
             System.out.println("Matricula o DNI erroneo\n");
         } else {
             try {
-                controlador.cerrarAlquiler(cliente, turismo);
+                controlador.cerrarAlquiler(cliente, vehiculo);
                 System.out.println("Alquiler cerrado satisfactoriamente\n");
             } catch (ExcepcionAlquilerVehiculos e) {
                 System.out.printf("ERROR: %s%n%n", e.getMessage());
             }
         }
     }
-    
+
+    @Override
     public void listarAlquileres() {
         Consola.mostrarCabecera("Listar trabajos");
         for (Alquiler alquiler : controlador.obtenerAlquiler()) {
@@ -176,5 +188,5 @@ public class IUTextual implements IVistaAlquilerVehiculos {
         }
         System.out.println("");
     }
-    
+
 }

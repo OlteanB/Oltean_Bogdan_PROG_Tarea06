@@ -25,15 +25,15 @@ public interface IModeloAlquilerVehiculo {
 
 	void anadirVehiculo(Vehiculo vehiculo, TipoVehiculo tipoVehiculo);
 
-	void borrarTurismo(String matricula);
+	void borrarVehiculo(String matricula);
 
-	Vehiculo buscarTurismo(String matricula);
+	Vehiculo buscarVehiculo(String matricula);
 
-	Vehiculo[] obtenerTurismo();
+	Vehiculo[] obtenerVehiculo();
 
-	void abrirAlquiler(Cliente cliente, Vehiculo turismo);
+	void abrirAlquiler(Cliente cliente, Vehiculo vehiculo);
 
-	void cerrarAlquiler(Cliente cliente, Vehiculo turismo);
+	void cerrarAlquiler(Cliente cliente, Vehiculo vehiculo);
         
         Alquiler[] obtenerAlquiler();
 

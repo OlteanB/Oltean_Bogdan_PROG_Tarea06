@@ -16,7 +16,7 @@ import mvc.modelo.dominio.vehiculo.TipoVehiculo;
  */
 public interface IControladorAlquilerVehiculos {
 
-    void abrirAlquiler(Cliente cliente, Vehiculo turismo);
+    void abrirAlquiler(Cliente cliente, Vehiculo vehiculo);
 
     void anadirCliente(Cliente cliente);
 
@@ -26,13 +26,13 @@ public interface IControladorAlquilerVehiculos {
 
     void borrarCliente(String dni);
 
-    void borrarTurismo(String matricula);
+    void borrarVehiculo(String matricula);
 
     Cliente buscarCliente(String dni);
 
-    Vehiculo buscarTurismo(String matricula);
+    Vehiculo buscarVehiculo(String matricula);
 
-    void cerrarAlquiler(Cliente cliente, Vehiculo turismo);
+    void cerrarAlquiler(Cliente cliente, Vehiculo vehiculo);
 
     void comenzar();
 
@@ -40,6 +40,6 @@ public interface IControladorAlquilerVehiculos {
 
     Cliente[] obtenerClientes();
 
-    Vehiculo[] obtenerTurismos();
+    Vehiculo[] obtenerVehiculos();
 
 }

@@ -32,7 +32,7 @@ public class Vechiculos {
         }
     }
 
-    public Vehiculo[] getTurismos() {
+    public Vehiculo[] getVehiculos() {
         return vehiculos;
     }
     

@@ -56,28 +56,28 @@ public class AlquilerVehiculo implements IModeloAlquilerVehiculo {
 
 	
     @Override
-	public void borrarTurismo(String matricula) {
+	public void borrarVehiculo(String matricula) {
 		vehiculos.borrar(matricula);
 	}
 	
     @Override
-	public Vehiculo buscarTurismo(String matricula) {
+	public Vehiculo buscarVehiculo(String matricula) {
 		return vehiculos.buscar(matricula);
 	}
 	
     @Override
-	public Vehiculo[] obtenerTurismo() {
-		return vehiculos.getTurismos();
+	public Vehiculo[] obtenerVehiculo() {
+		return vehiculos.getVehiculos();
 	}
 	
     @Override
-	public void abrirAlquiler(Cliente cliente, Vehiculo turismo) {
-		alquileres.openAlquiler(cliente, turismo);
+	public void abrirAlquiler(Cliente cliente, Vehiculo vehiculo) {
+		alquileres.openAlquiler(cliente, vehiculo);
 	}
 	
     @Override
-	public void cerrarAlquiler(Cliente cliente, Vehiculo turismo) {
-		alquileres.closeAlquiler(cliente, turismo);
+	public void cerrarAlquiler(Cliente cliente, Vehiculo vehiculo) {
+		alquileres.closeAlquiler(cliente, vehiculo);
 	}
 	
     @Override
@@ -92,8 +92,8 @@ public class AlquilerVehiculo implements IModeloAlquilerVehiculo {
 		anadirCliente(cliente1);
 		anadirCliente(cliente2);
                 Vehiculo vehiculo1 = TipoVehiculo.TURISMO.getInstancia("1111BBB", "Seat", "Ibiza", new DatosTecnicosVehiculo (1000, 5, 100));
-                Vehiculo vehiculo2 = TipoVehiculo.TURISMO.getInstancia("2222CCC", "Opel", "Astra", new DatosTecnicosVehiculo (1100, 5, 200));
-                Vehiculo vehiculo3 = TipoVehiculo.TURISMO.getInstancia("3333DDD", "Marca", "Modelo", new DatosTecnicosVehiculo (1200, 5, 300));
+                Vehiculo vehiculo2 = TipoVehiculo.DE_CARGA.getInstancia("2222CCC", "Opel", "Astra", new DatosTecnicosVehiculo (1100, 5, 200));
+                Vehiculo vehiculo3 = TipoVehiculo.AUTOBUS.getInstancia("3333DDD", "Marca", "Modelo", new DatosTecnicosVehiculo (1200, 5, 300));
                 anadirVehiculo(vehiculo1, TipoVehiculo.TURISMO);
                 anadirVehiculo(vehiculo2, TipoVehiculo.DE_CARGA);
                 anadirVehiculo(vehiculo3, TipoVehiculo.AUTOBUS);
