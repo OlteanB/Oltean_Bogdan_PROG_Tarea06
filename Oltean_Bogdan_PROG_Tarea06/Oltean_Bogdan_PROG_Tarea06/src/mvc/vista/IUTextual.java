@@ -8,7 +8,7 @@ package mvc.vista;
 import mvc.controlador.IControladorAlquilerVehiculos;
 import mvc.modelo.dao.Alquileres;
 import mvc.modelo.dao.Clientes;
-import mvc.modelo.dao.Turismos;
+import mvc.modelo.dao.Vechiculos;
 import mvc.modelo.dominio.Alquiler;
 import mvc.modelo.dominio.Cliente;
 import mvc.modelo.dominio.DireccionPostal;

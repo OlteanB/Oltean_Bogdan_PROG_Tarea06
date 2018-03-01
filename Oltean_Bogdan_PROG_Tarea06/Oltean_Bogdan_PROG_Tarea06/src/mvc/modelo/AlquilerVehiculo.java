@@ -5,7 +5,7 @@
  */
 package mvc.modelo;
 import mvc.modelo.dao.Clientes;
-import mvc.modelo.dao.Turismos;
+import mvc.modelo.dao.Vechiculos;
 import mvc.modelo.dao.Alquileres;
 import mvc.modelo.dominio.Alquiler;
 import mvc.modelo.dominio.Cliente;
@@ -19,12 +19,12 @@ import mvc.modelo.dominio.vehiculo.Vehiculo;
  */
 public class AlquilerVehiculo implements IModeloAlquilerVehiculo {
     private Clientes clientes;
-	private Turismos turismos;
+	private Vechiculos turismos;
 	private Alquileres alquileres;
 	
 	public AlquilerVehiculo() {
 		clientes = new Clientes();
-		turismos = new Turismos();
+		turismos = new Vechiculos();
 		alquileres = new Alquileres();
 	}
 	
