@@ -5,7 +5,7 @@
  */
 package mvc.modelo.dominio;
 
-import mvc.modelo.vehiculo.Vehiculo;
+import mvc.modelo.dominio.vehiculo.Vehiculo;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -16,7 +16,7 @@ import java.util.Date;
 public class Alquiler {
 
     private Cliente cliente;
-    private Vehiculo turismo;
+    private Vehiculo vehiculo;
     private Date fecha;
     private int dias;
     private final SimpleDateFormat FORMATO_FECHA = new SimpleDateFormat("dd/MM/yy");
@@ -25,7 +25,7 @@ public class Alquiler {
 
     public Alquiler(Cliente cliente, Vehiculo turismo) {
         this.cliente = cliente;
-        this.turismo = turismo;
+        this.vehiculo = turismo;
         fecha = new Date();
         dias = 0;
         turismo.setDisponible(false);
@@ -35,8 +35,8 @@ public class Alquiler {
         return cliente;
     }
 
-    public Vehiculo getTurismo() {
-        return turismo;
+    public Vehiculo getVehiculo() {
+        return vehiculo;
     }
 
     public Date getFecha() {
@@ -50,7 +50,7 @@ public class Alquiler {
     public void close() {
         Date fechaFin = new Date();
         dias = difDias(fecha, fechaFin);
-        turismo.setDisponible(true);
+        vehiculo.setDisponible(true);
     }
 
     public int difDias(Date fechaInicio, Date fechaFin) {
@@ -60,13 +60,13 @@ public class Alquiler {
     }
 
     public double getPrecio() {
-        double precio = dias * PRECIO_DIA + turismo.getCilindrada() / 100;
+        double precio = dias * PRECIO_DIA + vehiculo.FACTOR_CILINDRADA / 100;
         return precio;
     }
 
     @Override
     public String toString() {
-        return "Alquiler{" + "Cliente=" + cliente + ", Turismo=" + turismo + ", fecha=" + fecha + ", dias=" + dias + '}';
+        return "Alquiler{" + "Cliente=" + cliente + ", Turismo=" + vehiculo + ", fecha=" + fecha + ", dias=" + dias + '}';
     }
 
 }

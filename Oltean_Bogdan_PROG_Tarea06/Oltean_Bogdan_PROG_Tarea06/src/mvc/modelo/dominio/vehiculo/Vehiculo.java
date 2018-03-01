@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mvc.modelo.vehiculo;
+package mvc.modelo.dominio.vehiculo;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -16,10 +16,27 @@ import mvc.modelo.dominio.ExcepcionAlquilerVehiculos;
 public class Vehiculo {
 
     private String matricula, marca, modelo;
-    private int cilindrada;
     private boolean disponible;
+    
+    public final double FACTOR_CILINDRADA=0;
+    public final double FACTOR_NUMERO_PLAZAS=0;
+    public final double FACTOR_PMA=0;
+    
+    private DatosTecnicosVehiculo datosTecnicosVehiculo;
 
-    public Vehiculo(String matricula, String marca, String modelo, int cilindrada) {
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public Vehiculo(String matricula, String marca, String modelo, DatosTecnicosVehiculo datosTecnicosVehiculo) {
         if (compruebaMatricula(matricula)) {
             this.matricula = matricula;
         } else {
@@ -27,14 +44,14 @@ public class Vehiculo {
         }
         this.marca = marca;
         this.modelo = modelo;
-        this.cilindrada = cilindrada;
+        this.datosTecnicosVehiculo=datosTecnicosVehiculo;
     }
 
     public Vehiculo(Vehiculo vehiculo) {
         this.matricula = vehiculo.matricula;
         this.marca = vehiculo.marca;
         this.modelo = vehiculo.modelo;
-        this.cilindrada = vehiculo.cilindrada;
+        this.datosTecnicosVehiculo=vehiculo.datosTecnicosVehiculo;
     }
 
     private boolean compruebaMatricula(String matricula) {
@@ -55,9 +72,11 @@ public class Vehiculo {
         return modelo;
     }
 
-    public int getCilindrada() {
-        return cilindrada;
+    public DatosTecnicosVehiculo getDatosTecnicos() {
+        return datosTecnicosVehiculo;
     }
+
+    
 
     public boolean getDisponible() {
         return disponible;
@@ -69,7 +88,9 @@ public class Vehiculo {
 
     @Override
     public String toString() {
-        return "Vehiculo{" + "matricula=" + matricula + ", marca=" + marca + ", modelo=" + modelo + ", cilindrada=" + cilindrada + ", disponible=" + disponible + '}';
+        return "Vehiculo{" + "matricula=" + matricula + ", marca=" + marca + ", modelo=" + modelo + ", disponible=" + disponible + ", datosTecnicosVehiculo=" + datosTecnicosVehiculo + '}';
     }
+
+    
 
 }

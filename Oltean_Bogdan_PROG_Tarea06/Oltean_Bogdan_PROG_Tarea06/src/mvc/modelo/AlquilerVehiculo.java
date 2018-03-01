@@ -10,7 +10,8 @@ import mvc.modelo.dao.Alquileres;
 import mvc.modelo.dominio.Alquiler;
 import mvc.modelo.dominio.Cliente;
 import mvc.modelo.dominio.DireccionPostal;
-import mvc.modelo.vehiculo.Vehiculo;
+import mvc.modelo.dominio.vehiculo.DatosTecnicosVehiculo;
+import mvc.modelo.dominio.vehiculo.Vehiculo;
 
 /**
  *
@@ -89,8 +90,8 @@ public class AlquilerVehiculo implements IModeloAlquilerVehiculo {
 		Cliente cliente2 = new Cliente("bb", "22222222B", new DireccionPostal("04002", "Calle2", "Almeria"));
 		anadirCliente(cliente1);
 		anadirCliente(cliente2);
-		Vehiculo turismo1 = new Vehiculo("1111BBB", "Seat", "Ibiza", 6);
-		Vehiculo turismo2 = new Vehiculo("2222BBB", "Opel", "Opel", 8);
+		Vehiculo turismo1 = new Vehiculo("1111BBB", "Seat", "Ibiza", new DatosTecnicosVehiculo(1000, 5, 100));
+		Vehiculo turismo2 = new Vehiculo("2222BBB", "Opel", "Opel", new DatosTecnicosVehiculo(1100, 5, 200));
 		anadirTurismo(turismo1);
 		anadirTurismo(turismo2);
 }

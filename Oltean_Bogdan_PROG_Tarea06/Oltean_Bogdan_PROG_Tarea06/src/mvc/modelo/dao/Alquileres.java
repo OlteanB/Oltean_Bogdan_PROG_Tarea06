@@ -8,7 +8,7 @@ package mvc.modelo.dao;
 import mvc.modelo.dominio.Alquiler;
 import mvc.modelo.dominio.Cliente;
 import mvc.modelo.dominio.ExcepcionAlquilerVehiculos;
-import mvc.modelo.vehiculo.Vehiculo;
+import mvc.modelo.dominio.vehiculo.Vehiculo;
 
 /**
  *
@@ -33,9 +33,9 @@ public class Alquileres {
         while (posicion < alquileres.length && !posicionEncontrada) {
             if (alquileres[posicion] == null) {
                 posicionEncontrada = true;
-            } else if (alquileres[posicion].getTurismo().getMatricula().equals(turismo.getMatricula()) 
+            } else if (alquileres[posicion].getVehiculo().getMatricula().equals(turismo.getMatricula()) 
                     && alquileres[posicion].getCliente().equals(cliente)
-                    && !alquileres[posicion].getTurismo().getDisponible()) {
+                    && !alquileres[posicion].getVehiculo().getDisponible()) {
                 throw new ExcepcionAlquilerVehiculos("Ya existe un alquiler abierto para este vehículo");
             } else {
                 posicion++;
@@ -54,9 +54,9 @@ public class Alquileres {
         boolean encontrado = false;
         while (posicion < alquileres.length && !encontrado) {
             if (alquileres[posicion] != null
-                    && alquileres[posicion].getTurismo().getMatricula().equals(turismo.getMatricula())
+                    && alquileres[posicion].getVehiculo().getMatricula().equals(turismo.getMatricula())
                     && alquileres[posicion].getCliente().getDNI().equals(cliente.getDNI())
-                    && !alquileres[posicion].getTurismo().getDisponible()) {
+                    && !alquileres[posicion].getVehiculo().getDisponible()) {
                 encontrado = true;
             } else {
                 posicion++;

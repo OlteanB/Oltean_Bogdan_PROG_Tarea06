@@ -6,7 +6,7 @@
 package mvc.controlador;
 
 import mvc.modelo.dominio.Cliente;
-import mvc.modelo.vehiculo.Vehiculo;
+import mvc.modelo.dominio.vehiculo.Vehiculo;
 import mvc.modelo.dominio.Alquiler;
 
 /**
