@@ -9,7 +9,9 @@ import mvc.modelo.dominio.Cliente;
 import mvc.modelo.dominio.DireccionPostal;
 import mvc.modelo.dominio.vehiculo.Vehiculo;
 import mvc.modelo.dominio.Alquiler;
+import mvc.modelo.dominio.ExcepcionAlquilerVehiculos;
 import mvc.modelo.dominio.vehiculo.DatosTecnicosVehiculo;
+import mvc.modelo.dominio.vehiculo.TipoVehiculo;
 import mvc.vista.Opcion;
 import utilidades.Entrada;
 
@@ -21,7 +23,7 @@ public class Consola {
 
     public static void mostrarMenu() {
         mostrarCabecera("Alquiler Vehiculos");
-        for(Opcion opcion: Opcion.values()){
+        for (Opcion opcion : Opcion.values()) {
             System.out.println(opcion);
         }
     }
@@ -70,6 +72,7 @@ public class Consola {
 
     public static Vehiculo leerVehiculo() {
         Vehiculo nuevoVehiculo = null;
+        int ordinalVehiculo = 0;
         System.out.print("Matrícula: ");
         String matricula = Entrada.cadena();
         System.out.print("Marca: ");
@@ -79,11 +82,34 @@ public class Consola {
         System.out.print("Cilindrada: ");
         int cilindrada = Entrada.entero();
         System.out.println("Numero de plazas: ");
-        int numeroPlazas= Entrada.entero();
+        int numeroPlazas = Entrada.entero();
         System.out.println("PMA: ");
         int pma = Entrada.entero();
-        nuevoVehiculo = new Vehiculo(matricula, marca, modelo,new DatosTecnicosVehiculo(cilindrada, numeroPlazas, pma));
+        try {
+            DatosTecnicosVehiculo datosTecnicosEntrada = new DatosTecnicosVehiculo(cilindrada, numeroPlazas, pma);
+            nuevoVehiculo = TipoVehiculo.getTipoVehiculoSegunOrdinal(ordinalVehiculo).getInstancia(matricula, marca, modelo, datosTecnicosEntrada);
+        } catch (ExcepcionAlquilerVehiculos a) {
+            System.out.printf("Error", a.getMessage());
+        }
         return nuevoVehiculo;
+    }
+
+    public static int elegirTipoVehiculo() {
+        int ordinalTipoVehiculo;
+        do {
+            System.out.printf("Elegir tipo vehiculo ", obtenerTiposVehiculo());
+            ordinalTipoVehiculo = Entrada.entero();
+
+        } while (!TipoVehiculo.esOrdinalValido(ordinalTipoVehiculo));
+        return ordinalTipoVehiculo;
+    }
+
+    public static String obtenerTiposVehiculo() {
+        StringBuilder tiposVehiculo = new StringBuilder();
+        for (TipoVehiculo tipoVehiculo : TipoVehiculo.values()) {
+            tiposVehiculo.append(tipoVehiculo.ordinal()).append(" ").append(tipoVehiculo).append(" ");
+        }
+        return tiposVehiculo.toString();
     }
 
 }

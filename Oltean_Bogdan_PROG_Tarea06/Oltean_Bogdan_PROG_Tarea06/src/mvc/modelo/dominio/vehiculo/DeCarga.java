@@ -26,7 +26,8 @@ public class DeCarga extends Vehiculo {
 
     @Override
     public double getPrecioEspecifico() {
-        return FACTOR_PMA / 20 + 1 * FACTOR_NUMERO_PLAZAS;
+        double precioCarga = getDatosTecnicos().getPma() / 20 + 1 * getDatosTecnicos().getNumeroPlazas();
+        return precioCarga;
     }
 
 }

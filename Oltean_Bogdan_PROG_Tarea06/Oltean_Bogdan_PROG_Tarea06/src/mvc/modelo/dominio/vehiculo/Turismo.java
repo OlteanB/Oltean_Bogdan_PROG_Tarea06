@@ -26,7 +26,8 @@ public class Turismo extends Vehiculo {
 
     @Override
     public double getPrecioEspecifico() {
-        return FACTOR_CILINDRADA / 50;
+       double precioTurismo = getDatosTecnicos().getCilindrada()/50;
+       return precioTurismo;
     }
 
 }

@@ -14,8 +14,8 @@ public class Autobus extends Vehiculo {
     public Autobus(String matricula, String marca, String modelo, DatosTecnicosVehiculo datosTecnicos) {
         super(matricula, marca, modelo, datosTecnicos);
     }
-    
-    public Autobus(Autobus autobus){
+
+    public Autobus(Autobus autobus) {
         super(autobus);
     }
 
@@ -26,6 +26,7 @@ public class Autobus extends Vehiculo {
 
     @Override
     public double getPrecioEspecifico() {
-        return FACTOR_CILINDRADA / 50 + 1 * FACTOR_NUMERO_PLAZAS;
+        double precioAutobus = getDatosTecnicos().getCilindrada() / 50 + 1 * getDatosTecnicos().getNumeroPlazas();
+        return precioAutobus;
     }
 }

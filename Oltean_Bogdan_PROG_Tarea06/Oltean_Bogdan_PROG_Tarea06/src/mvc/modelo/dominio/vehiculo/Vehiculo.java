@@ -19,9 +19,9 @@ public abstract class Vehiculo {
     private String matricula, marca, modelo;
     private boolean disponible;
     
-    public final double FACTOR_CILINDRADA=datosTecnicos.getCilindrada();
-    public final double FACTOR_NUMERO_PLAZAS=datosTecnicos.getNumeroPlazas();
-    public final double FACTOR_PMA=datosTecnicos.getPma();
+    public final double FACTOR_CILINDRADA=0.0;
+    public final double FACTOR_NUMERO_PLAZAS=0.0;
+    public final double FACTOR_PMA=0.0;
     
     
     public abstract TipoVehiculo getTipoVehiculo();
